@@ -95,10 +95,10 @@ public class MonitorVerticle extends Verticle {
 	public class AddressBufferHandler implements Handler<Message<String>>{
 		public void handle(Message<String> message){
 			System.out.println("I received a Verticle Address : " + message.body() + " in MonitorVerticle");
+			eb.send("webVerticle.address", message.body());
 			putStream(message.body());
 			display_address();
 			sendAddressToFilter(message.body());
-			//printUsage();
 		}
 	}
 	public class StatusBufferHandler implements Handler<Message<JsonObject>>{
